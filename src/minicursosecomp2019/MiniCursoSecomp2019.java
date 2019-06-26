@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import models.Categoria;
 import models.Marca;
+import models.Produto;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -25,6 +26,25 @@ public class MiniCursoSecomp2019 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        /*Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction ts = s.beginTransaction();
+        Produto p = new Produto();
+        p.setDescricao("Teclado branco 104 teclas");
+        p.setEstoque(5);
+        p.setVlrunit(22.0);
+        p.setCategoria((Categoria)s.get(Categoria.class, 4));
+        p.setMarca((Marca)s.get(Marca.class, 1));
+        s.save(p);
+        ts.commit();*/
+        
+        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction ts = s.beginTransaction();
+        Categoria c = (Categoria)s.get(Categoria.class, 4);
+        for (Object produto : c.getProdutos()) {
+            System.out.println(((Produto)produto).getDescricao());
+        }
+        ts.commit();
         
         /*Categoria cat = new Categoria();
         cat.setDescricao("HD");
