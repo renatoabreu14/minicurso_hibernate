@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import java.util.List;
 import models.Categoria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -52,6 +53,15 @@ public class ControllerCategoria implements MetodosPadrao{
         }catch(Exception ex){
             return null;
         }
+    }
+
+    @Override
+    public List<Object> trazerTudo() {
+        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction ts = s.beginTransaction();
+        List<Object> lista = s.createQuery("from Categoria").list();
+        ts.commit();
+        return lista;
     }
     
     

@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import java.util.List;
+
 /**
  *
  * @author renato
@@ -16,5 +18,7 @@ public interface MetodosPadrao {
     public boolean excluir(Object o);
     
     public Object localizar(int id);
+    
+    public List<Object> trazerTudo();
     
 }
